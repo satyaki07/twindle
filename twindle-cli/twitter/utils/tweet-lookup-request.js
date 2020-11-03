@@ -42,6 +42,20 @@ async function doTweetLookup(tweet_id) {
  * @param {fetch.Response} response
  */
 async function processResponse(response) {
+<<<<<<< HEAD
+=======
+    if(checkIfRequestSuccessful(response)) {
+        let responseJSON = await response.json();
+        // let tweet = getTweetObject(responseJSON);
+        if(isTweetNotOlderThanSevenDays(tweet)) {
+            if(!isProvidedTweetFirstTweetOfTheThread(tweet))
+                await doTweetLookup(tweet.conversation_id);
+            else
+                await processTweetLookup(responseJSON);
+        }
+    }
+}
+>>>>>>> 2e795d55aa14928286fce2de8ac8a8b2fdd4a6ff
 
   if (!checkIfRequestSuccessful(response)) {
     throw new UserError(
